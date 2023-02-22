@@ -2,6 +2,7 @@ import {FieldPacket} from "mysql2";
 import {pool} from "../utils/db";
 import {v4 as uuid} from "uuid";
 import {MathEntity} from "../types";
+import {ValidationError} from "../utils/errors";
 
 
 type MathRecordsResults = [MathRecord[], FieldPacket[]]
@@ -15,7 +16,15 @@ export class MathRecord implements MathEntity {
     public dateAdded?: string | null
 
     constructor(obj: MathEntity) {
-
+        if (!obj.firstNum) {
+            throw new ValidationError('First number must be given');
+        }
+        if (obj.secondNum === null) {
+            throw new ValidationError('Second number must be given');
+        }
+        if (obj.operator === '/' && obj.secondNum === 0) {
+            throw new ValidationError('While dividing you cannot divide by 0');
+        }
         this.id = obj.id;
         this.firstNum = obj.firstNum;
         this.operator = obj.operator;
