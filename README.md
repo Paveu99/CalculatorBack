@@ -1,4 +1,4 @@
-# MathApp - front-end
+# MathApp - back-end
 ![Bez tytułu](https://user-images.githubusercontent.com/100468919/229377546-99af56df-0082-40cc-8684-f54f9a45193a.png)
 
 # General info
