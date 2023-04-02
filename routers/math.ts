@@ -32,7 +32,5 @@ mathRouter
         const newExpression = new MathRecord(req.body as CreateMathReq);
         await newExpression.insert();
 
-        res.json({
-            newExpression,
-        })
+        res.json(newExpression)
     });
