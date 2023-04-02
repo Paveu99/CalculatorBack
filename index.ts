@@ -4,6 +4,7 @@ import {handleError} from "./utils/errors";
 import './utils/db';
 import cors from 'cors';
 import {mathRouter} from "./routers/math";
+import {userRouter} from "./routers/user";
 
 
 const app = express();
@@ -13,7 +14,7 @@ app.use(cors({
 app.use(json())
 
 app.use('/math', mathRouter);
-
+app.use('/user', userRouter);
 
 app.use(handleError);
 
