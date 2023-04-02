@@ -3,6 +3,7 @@ export interface MathEntity {
     firstNum: number,
     operator: string,
     secondNum: number,
-    solution: number | null;
+    solution: number | null,
     dateAdded?: string | null,
+    userId: string
 }

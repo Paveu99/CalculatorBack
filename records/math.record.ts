@@ -14,9 +14,10 @@ export class MathRecord implements MathEntity {
     public secondNum: number;
     public solution: number | null;
     public dateAdded?: string | null
+    public userId: string
 
     constructor(obj: MathEntity) {
-        if (!obj.firstNum) {
+        if (obj.firstNum === null) {
             throw new ValidationError('First number must be given');
         }
         if (obj.secondNum === null) {
@@ -30,7 +31,8 @@ export class MathRecord implements MathEntity {
         this.operator = obj.operator;
         this.secondNum = obj.secondNum;
         this.solution = obj.solution;
-        this.dateAdded = obj.dateAdded
+        this.dateAdded = obj.dateAdded;
+        this.userId = obj.userId;
     }
 
     static async listAll(): Promise<MathRecord[]> {
@@ -60,13 +62,14 @@ export class MathRecord implements MathEntity {
                 ('00' + date.getSeconds()).slice(-2);
         }
 
-        await pool.execute("INSERT INTO `math_expressions` VALUES(:id, :firstNum, :operator, :secondNum, :solution, :dateAdded)", {
+        await pool.execute("INSERT INTO `math_expressions` VALUES(:id, :firstNum, :operator, :secondNum, :solution, :dateAdded, :userId)", {
             id: this.id,
             firstNum: this.firstNum,
             operator: this.operator,
             secondNum: this.secondNum,
             solution: this.solution,
             dateAdded: this.dateAdded,
+            userId: this.userId,
         });
 
         return this.id;
