@@ -5,7 +5,7 @@
 
 A web app which allows you to do simple math tasks such as: adding, subtracting, multiplying and dividing. Each and every one of your math expressions is stored in database which gives you opportunity to check your previous calculations.
 What is more when you are bored there is a MATH JOKES part where some of the funniest math jokes are stored so if you are a good laugh try it!
-Here you can have a look at back-end side: https://github.com/Paveu99/project-front.
+Here you can have a look at front-end side: https://github.com/Paveu99/project-front. Back-end side uses MySql base as a source of storing information about users and theirs math expressions.
 
 
 ## Table of content: 
