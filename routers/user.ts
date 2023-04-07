@@ -1,6 +1,7 @@
 import {Router} from "express";
 import {CreateUserReq} from "../types";
 import {UserRecord} from "../records/user.record";
+import {compare} from "bcrypt";
 
 
 export const userRouter = Router();
@@ -10,9 +11,17 @@ userRouter
     .post('/login', async (req, res) => {
         const {email, password} = req.body
         console.log(req.body)
-        const user = await UserRecord.getOne(email, password);
-        console.log(user)
-        res.json(user);
+        const user = await UserRecord.getOne(email);
+        if (!user) {
+            res.end()
+        }
+        const match = await compare(password, user.password);
+        if (match) {
+            console.log(user)
+            res.json(user);
+        } else {
+            res.end()
+        }
     })
 
     .post('/reg', async (req, res) => {
