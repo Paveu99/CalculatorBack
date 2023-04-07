@@ -15,6 +15,7 @@ Here you can have a look at front-end side: https://github.com/Paveu99/project-f
 Here is a link to watch it work: https://youtu.be/fuv1B6gRkXA
 ## Tech Stack
 Client side was created with:
+- bcrypt: 5.1.0,
 - typescript: 4.9.5,
 - express: 4.18.2,
 - express-async-errors: 3.1.1,
