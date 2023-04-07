@@ -3,6 +3,7 @@ import {pool} from "../utils/db";
 import {v4 as uuid} from "uuid";
 import {UserEntity} from "../types";
 import {ValidationError} from "../utils/errors";
+import {genSalt, hash} from "bcrypt";
 
 
 type UserRecordsResults = [UserRecord[], FieldPacket[]]
@@ -29,10 +30,9 @@ export class UserRecord implements UserEntity {
         this.password = obj.password;
     }
 
-    static async getOne(email: string, password: string): Promise<UserRecord> | null {
-        const [results] = await pool.execute("SELECT * FROM `users` WHERE `email` = :email AND `password` = :password", {
+    static async getOne(email: string): Promise<UserRecord> | null {
+        const [results] = await pool.execute("SELECT * FROM `users` WHERE `email` = :email", {
             email,
-            password,
         }) as UserRecordsResults;
         return results.length === 0 ? null : new UserRecord(results[0]);
     }
@@ -41,6 +41,7 @@ export class UserRecord implements UserEntity {
         if (!this.id) {
             this.id = uuid();
         }
+        this.password = await hash(this.password, await genSalt(10));
 
         await pool.execute("INSERT INTO `users` VALUES(:id, :name, :surname, :email, :password)", {
             id: this.id,
