@@ -10,14 +10,12 @@ userRouter
 
     .post('/login', async (req, res) => {
         const {email, password} = req.body
-        console.log(req.body)
         const user = await UserRecord.getOne(email);
         if (!user) {
             res.end()
         }
         const match = await compare(password, user.password);
         if (match) {
-            console.log(user)
             res.json(user);
         } else {
             res.end()
