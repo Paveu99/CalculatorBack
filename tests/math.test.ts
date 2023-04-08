@@ -6,6 +6,7 @@ const defaultObj = {
     operator: '+',
     secondNum: 2,
     solution: 3,
+    userId: '123'
 }
 
 afterAll(async () => {
