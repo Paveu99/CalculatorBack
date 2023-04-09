@@ -12,7 +12,7 @@ Here you can have a look at front-end side: https://github.com/Paveu99/project-f
 - Demo
 - Technologies
 ## Demo
-Here is a link to watch it work: https://youtu.be/fuv1B6gRkXA
+Here is a link to watch it work: https://youtu.be/aLytW78FJ_c
 ## Tech Stack
 Client side was created with:
 - bcrypt: 5.1.0,
